@@ -1,31 +1,34 @@
 <div class="container">
+    <div class="row justify-content-center"> <small id="validate-account" class="d-none text-danger"><?= $rules['account']['message2'] ?></small></div>
     <div class="row justify-content-center">
-        <form action="register" validate method="post" style="padding:50px;">
+
+        <form action="register" method="post" class="form-width">
             <div class="form-group">
-                <label for="firstNameInput">Имя</label>
-                <input type="text" maxlength="32" required pattern="^[A-Za-zА-Яа-яЁё]{1,32}" class="form-control" name="firstNameInput" id="firstNameInput" placeholder="любые символы русского, и латинского алфавита">
+                <label for="firstName">Имя</label>
+                <input type="text" minlength="3" maxlength="32" required class="form-control" name="firstName" id="firstName" placeholder="любые символы русского, и латинского алфавита">
+                <small id="validate-firstName" class="d-none text-danger"><?= $rules['firstName']['message'] ?></small>
             </div>
             <div class="form-group">
-                <label for="lastNameInput">Фамилия</label>
-                <input type="text" maxlength="50" required pattern="^[A-Za-zА-Яа-яЁё]{1,50}" class="form-control" name="lastNameInput" id="lastNameInput" placeholder="любые символы русского, и латинского алфавита">
+                <label for="lastName">Фамилия</label>
+                <input type="text" minlength="3" maxlength="50" required class="form-control" name="lastName" id="lastName" placeholder="любые символы русского, и латинского алфавита">
+                <small id="validate-lastName" class="d-none text-danger"><?= $rules['lastName']['message'] ?></small>
             </div>
             <div class="form-group">
-                <label for="emailInput">Email адресс</label>
-                <input type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" name="emailInput" id="emailInput" aria-describedby="emailHelp" placeholder="Введите email">
-                <small id="emailHelp" class="form-text text-muted">
-                    Мы никогда не передадим вашу электронную почту кому-либо еще.</small>
+                <label for="email">Email адресс</label>
+                <input type="email" required class="form-control" name="email" id="email" placeholder="Введите email">
+                <small id="validate-email" class="d-none text-danger"><?= $rules['email']['message'] ?></small>
             </div>
             <div class="form-group">
-                <label for="genderSelect">Выберите пол</label>
-                <select class="form-control" name="genderSelect"  id="genderSelect">
-                    <option>не выбрано</option>
-                    <option>мужской</option>
-                    <option>женский</option>
+                <label for="gender">Выберите пол</label>
+                <select class="form-control" name="gender" id="gender">
+                    <option value="-1">не выбрано</option>
+                    <option value="1">мужской</option>
+                    <option value="0">женский</option>
                 </select>
             </div>
             <div class="form-group ">
-                <label for="dateInput">Дата рождения</label>
-                <input class="form-control" type="date" id="dateInput">
+                <label for="birth">Дата рождения</label>
+                <input class="form-control" type="date" name="birth" id="birth">
             </div>
 
             <input type="submit" value="Зарегестрироватся" class="btn btn-dark" />

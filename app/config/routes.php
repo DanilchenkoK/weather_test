@@ -5,7 +5,15 @@ return [
         'controller' => 'home',
         'action' => 'index'
     ],
-    'register' => [
+    'home/index' => [
+        'controller' => 'home',
+        'action' => 'index'
+    ],
+    'home/weather' => [
+        'controller' => 'home',
+        'action' => 'weather'
+    ],
+    'home/register' => [
         'controller' => 'home',
         'action' => 'register'
     ]

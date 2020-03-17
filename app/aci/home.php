@@ -3,7 +3,8 @@
 return [
   'all' => [
     'index',
-    'register'
+    'register',
+    'weather'
   ],
   'authorized' => [],
   'guest' => [],

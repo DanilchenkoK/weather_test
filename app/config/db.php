@@ -1,7 +1,7 @@
 <?php
 return [
     'host' => 'localhost',
-    'name' => 'db_store',
+    'name' => 'bwt_test',
     'password' => 'Qazxsw!@#$',
     'user' => 'newuser',
 ];

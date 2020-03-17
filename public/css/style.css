@@ -1,0 +1,9 @@
+.form-width {
+    min-width: 450px;
+}
+
+@media only screen and (max-width: 600px) {
+    .form-width {
+        min-width: 90%;
+    }
+}

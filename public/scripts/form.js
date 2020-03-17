@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
-
-    $('form[validate]').submit(function(event) {
+    $('form').submit(function(event) {
         event.preventDefault();
         $.ajax({
             url: $(this).attr('action'),
@@ -11,14 +10,14 @@ $(document).ready(function() {
             cache: false,
             processData: false,
             success: result => {
+                console.log(result);
                 json = jQuery.parseJSON(result);
                 if (json.url) {
                     window.location.href = json.url;
                 } else if (json.validation) {
                     json.inputs.forEach(element => {
                         if (json.validation[element].error) {
-
-                            $('#validate-' + element).removeClass("d-none").addClass("d-block");
+                            $('#validate-' + element).removeClass("d-none").addClass('d-block');
                         } else {
                             $('#validate-' + element).removeClass("d-block").addClass("d-none");
                         }
@@ -27,7 +26,6 @@ $(document).ready(function() {
                     alert(json.status + ' - ' + json.message);
                     if (json.urlocation)
                         setTimeout(function() { window.location.href = json.urlocation; }, 250);
-                    // window.location.href = json.urlocation;
                 }
 
             }

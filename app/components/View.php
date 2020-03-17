@@ -47,8 +47,8 @@ class View
     {
         exit(json_encode(['url' => $url]));
     }
-    public function validationMessage($inputs, $errors, $itemNumber)
+    public function validationMessage($inputs, $errors)
     {
-        exit(json_encode(['inputs' => $inputs, 'validation' => $errors, 'itemNumber' => $itemNumber]));
+        exit(json_encode(['inputs' => $inputs, 'validation' => $errors]));
     }
 }
