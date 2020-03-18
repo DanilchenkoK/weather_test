@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -17,38 +17,53 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light pos-fixed" id='mainNav'>
-        <a class="navbar-brand" href='/home/index'>BWT Test</a>
+        <a class="navbar-brand" href="http://localhost/">BWT Test</a>
 
         <button aria-controls="navbarResponsive" data-target="#navbarResponsive" data-toggle="collapse" class="navbar-toggler navbar-toggler-right">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div id='navbarResponsive' class="collapse navbar-collapse">
             <ul class="navbar-nav">
-                <li class=" nav-item ml-1">
-                    <a href="/home/register" class="nav-link">
-                        <i class='fa fa-fw fa-user-plus'></i>
-                        <span class="nav-link-text">Регистрация</span>
-                    </a>
-                </li>
-                <li class=" nav-item ml-1">
-                    <a href="/home/weather" class="nav-link">
+                <li class="nav-item ml-1">
+                    <a href="/weather" class="nav-link">
                         <i class='fa fa-fw fa-umbrella'></i>
                         <span class="nav-link-text">Погода в Запорожье</span>
                     </a>
                 </li>
-                <li class=" nav-item ml-1">
-                    <a href="" class="nav-link">
+                <li class="nav-item ml-1">
+                    <a href="/contact" class="nav-link">
                         <i class='fa fa-fw fa-comment'></i>
                         <span class="nav-link-text">Обратная связь</span>
                     </a>
                 </li>
-                <li class=" nav-item ml-1">
+                <li class="nav-item ml-1">
                     <a href="" class="nav-link">
                         <i class='fa fa-fw fa-book'></i>
                         <span class="nav-link-text">Feedback</span>
                     </a>
                 </li>
+                <?php if (!isset($_SESSION['authorized']['name'])) : ?>
+                    <li class="penult nav-item ml-1">
+                        <a href="/register" class=" nav-link">
+                            <i class='fa fa-fw fa-user-plus'></i>
+                            <span class="nav-link-text">Регистрация</span>
+                        </a>
+                    </li>
+
+                    <li class="last nav-item ml-1">
+                        <a href="/login<?= $_SERVER['REQUEST_URI'] ?>" class=" nav-link">
+                            <i class='fa fa-fw fa-user'></i>
+                            <span class="nav-link-text">Войти</span>
+                        </a>
+                    </li>
+                <?php else : ?>
+                    <li class="last nav-item ml-1">
+                        <a href="/logout<?= $_SERVER['REQUEST_URI'] ?>" class=" nav-link">
+                            <i class='fa fa-fw fa-user'></i>
+                            <span class="nav-link-text">Выйти</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
             </ul>
         </div>
     </nav>

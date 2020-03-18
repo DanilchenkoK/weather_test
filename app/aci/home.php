@@ -3,11 +3,20 @@
 return [
   'all' => [
     'index',
-    'register',
-    'weather'
+    'contact'
   ],
-  'authorized' => [],
-  'guest' => [],
+  'authorized' => [
+    'weather',
+    'contact',
+    'register',
+    'login',
+    'logout',
+    'feedback'
+  ],
+  'guest' => [
+    'register',
+    'login'
+  ],
   'admin' => []
 
 ];

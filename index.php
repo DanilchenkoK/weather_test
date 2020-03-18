@@ -25,6 +25,6 @@ session_start();
 // unset($_SESSION['card-fullPrice']);
 //debug($_SESSION);
 // unset($_SESSION['admin']);
-// unset($_SESSION['authorized']);
+//unset($_SESSION['authorized']);
 $router = new Router;
 $router->run();

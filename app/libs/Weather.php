@@ -37,7 +37,7 @@ class Weather
         $weather = [];
         foreach ($divs as $div) {
             if ($div->getAttribute('class') === 'w_time') {
-                $weather['time'][] = $div->childNodes->item(0)->textContent . ":00";
+                $weather['time'][] = $div->childNodes->item(0)->textContent;
             }
             if ($div->getAttribute('class') === 'widget__value w_icon') {
                 $weather['data_text'][] = $div->childNodes->item(0)->getAttribute('data-text');
@@ -47,6 +47,7 @@ class Weather
                     $weather['temperature'][] = $div->childNodes->item(0)->textContent;
                 }
             }
+            if ($counter == 12) break;
         }
         $weather['time_span'] = 8;
         return $weather;

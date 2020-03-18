@@ -19,9 +19,9 @@ class View
         $fullpath = 'app/views/' . $this->path . '.php';
         if (file_exists($fullpath)) {
             ob_start();
-            include_once 'app/views/' . $this->path . '.php';
+            require  $fullpath;
             $content = ob_get_clean();
-            include_once 'app/views/layouts/' . $this->layout . '.php';
+            require 'app/views/layouts/' . $this->layout . '.php';
         }
     }
     public function redirect($url)
@@ -34,7 +34,7 @@ class View
         http_response_code($code);
         $fullpath = 'app/views/errors/' . $code . '.php';
         if (file_exists($fullpath)) {
-            include $fullpath;
+            require $fullpath;
             exit;
         }
     }

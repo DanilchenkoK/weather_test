@@ -2,6 +2,23 @@
     min-width: 450px;
 }
 
+li.last {
+    position: fixed;
+    right: 2em;
+}
+
+li.penult {
+    position: fixed;
+    right: 10em;
+}
+
+@media only screen and (max-width: 992px) {
+    li.last,
+    li.penult {
+        position: inherit;
+    }
+}
+
 @media only screen and (max-width: 600px) {
     .form-width {
         min-width: 90%;

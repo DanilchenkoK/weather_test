@@ -5,15 +5,27 @@ return [
         'controller' => 'home',
         'action' => 'index'
     ],
-    'home/index' => [
+    'index' => [
         'controller' => 'home',
         'action' => 'index'
     ],
-    'home/weather' => [
+    'contact' => [
+        'controller' => 'home',
+        'action' => 'contact'
+    ],
+    'weather' => [
         'controller' => 'home',
         'action' => 'weather'
     ],
-    'home/register' => [
+    'login/{url:\w+}' => [
+        'controller' => 'home',
+        'action' => 'login'
+    ],
+    'logout/{url:\w+}' => [
+        'controller' => 'home',
+        'action' => 'logout'
+    ],
+    'register' => [
         'controller' => 'home',
         'action' => 'register'
     ]

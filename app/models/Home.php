@@ -15,13 +15,36 @@ class Home extends Model
 
     public function createNewUser($post)
     {
-        $this->db->query("insert into users (first,last,email, gender, birth) values(:first, :last, :email, :gender, :birth)", [
+        $role_id = $this->db->column('select id from roles where name = :name', ['name' => 'user']);
+        $this->db->query('insert into users (first,last,email,password, role_id, gender, birth) 
+        values(:first, :last, :email, :password, :role,:gender, :birth)', [
             'first' => $post['firstName'],
+            'role' => $role_id,
             'last' => $post['lastName'],
             'email' => $post['email'],
+            'password' => password_hash(trim($post['password']), PASSWORD_BCRYPT),
             'gender' => $post['gender'] == -1 ? null : $post['gender'],
             'birth' =>  $post['birth'] ?? null,
         ]);
+    }
+    public function checkEmailAndPassword($post)
+    {
+        $user = $this->db->row('select users.first, email, password, roles.name as role from users 
+        join roles on users.role_id = roles.id where email = :email', [
+            'email' => $post['email']
+        ]);
+        if (!$user or !password_verify($post['password'], $user[0]['password'])) {
+            $this->rules['account']['error'] = true;
+            return false;
+        }
+        $status = $user[0]['role'] == 'user' ? 'authorized' : 'guest';
+        $_SESSION[$status]['name'] = $user[0]['first'];
+        return true;
+    }
+
+    public function logoutAccount()
+    {
+        unset($_SESSION['authorized']);
     }
 
     public function checkEmail($post)
@@ -33,7 +56,6 @@ class Home extends Model
             $this->rules['account']['error'] = true;
             return false;
         }
-
         return true;
     }
 
