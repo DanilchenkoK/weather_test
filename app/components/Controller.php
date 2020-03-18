@@ -39,8 +39,6 @@ abstract class Controller
                 return true;
             } else if (!isset($_SESSION['authorized']['name']) and $this->isAcl('guest')) {
                 return true;
-            } else if (isset($_SESSION['admin']) and $this->isAcl('admin')) {
-                return true;
             }
         }
         return false;

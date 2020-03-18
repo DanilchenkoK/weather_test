@@ -17,6 +17,4 @@ return [
     'register',
     'login'
   ],
-  'admin' => []
-
 ];

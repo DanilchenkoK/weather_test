@@ -37,7 +37,7 @@
                     </a>
                 </li>
                 <li class="nav-item ml-1">
-                    <a href="" class="nav-link">
+                    <a href="/feedback" class="nav-link">
                         <i class='fa fa-fw fa-book'></i>
                         <span class="nav-link-text">Feedback</span>
                     </a>

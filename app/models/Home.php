@@ -54,7 +54,6 @@ class Home extends Model
             'http' => [
                 'header' => "Content-Type: application/x-www-form-urlencoded\r\n" .
                     "Content-Length: " . strlen($data),
-
                 'method' => 'POST',
                 'content' =>  $data
             ]
@@ -66,14 +65,23 @@ class Home extends Model
         return $captcha_success->success;
     }
 
+    public function getMessages()
+    {
+        $mess = $this->db->row('select * from feedback order by id desc');
+        if (!$mess) {
+            return false;
+        }
+        return $mess;
+    }
+
     public function saveMessage($post)
     {
-
-        $this->db->query('insert into feedback (name, email, text)
-        values (:name, :email, :text)', [
+        $this->db->query('insert into feedback (name, email, text, date_added)
+        values (:name, :email, :text, :date)', [
             'name' => $post['firstName'],
             'email' => $post['email'],
-            'text' => $post['text']
+            'text' => $post['text'],
+            'date' => date('Y-m-d H:i:s')
         ]);
     }
 

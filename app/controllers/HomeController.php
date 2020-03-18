@@ -14,6 +14,13 @@ class HomeController extends Controller
     $this->view->render('Главная');
   }
 
+  public function feedbackAction()
+  {
+    $this->view->render('Заданные вопросы', [
+      'messages' => $this->model->getMessages()
+    ]);
+  }
+
   public function contactAction()
   {
     if (!empty($_POST)) {
@@ -28,7 +35,6 @@ class HomeController extends Controller
     }
     $this->view->render('Обратная связь', ['rules' => $this->model->rules]);
   }
-
 
   public function loginAction()
   {
@@ -47,6 +53,7 @@ class HomeController extends Controller
       'rUrl' => $this->route['url']
     ]);
   }
+
   public function registerAction()
   {
     isset($_SESSION['authorized']) ? $this->view->redirect('index') : null;

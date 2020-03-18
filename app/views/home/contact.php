@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <form action="contact" method="post" class="form-width">
+        <form action="/contact" method="post" class="form-width">
             <div class="form-group">
                 <label for="firstName">Имя</label>
                 <input type="text" minlength="3" maxlength="32" required class="form-control" name="firstName" id="firstName" placeholder="любые символы русского, и латинского алфавита">
@@ -26,7 +26,6 @@
                 <script src='https://www.google.com/recaptcha/api.js'></script>
                 <div class="g-recaptcha" data-sitekey="6LfKKeIUAAAAAGzKAXyx98f74pRTj4aRaOEZgdve"></div>
             </div>
-
             <input type="submit" value="Отправить" class="btn btn-dark" />
         </form>
     </div>

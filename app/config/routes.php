@@ -29,6 +29,10 @@ return [
         'controller' => 'home',
         'action' => 'logout'
     ],
+    'feedback' => [
+        'controller' => 'home',
+        'action' => 'feedback'
+    ],
     'register' => [
         'controller' => 'home',
         'action' => 'register'

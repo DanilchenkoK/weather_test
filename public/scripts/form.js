@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
     $('form').submit(function(event) {
+        $('input[type=submit]').attr('disabled', '');
         event.preventDefault();
         $.ajax({
             url: $(this).attr('action'),
@@ -26,6 +27,7 @@ $(document).ready(function() {
                     if (json.urlocation)
                         setTimeout(function() { window.location.href = json.urlocation; }, 250);
                 }
+                $('input[type=submit]').removeAttr('disabled');
 
             }
         })
