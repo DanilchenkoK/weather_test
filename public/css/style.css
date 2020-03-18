@@ -3,12 +3,12 @@
 }
 
 li.last {
-    position: fixed;
+    position: absolute;
     right: 2em;
 }
 
 li.penult {
-    position: fixed;
+    position: absolute;
     right: 7em;
 }
 
