@@ -12,7 +12,7 @@
     <script type='text/javascript' src="/public/scripts/bootstrap.js"></script>
     <script type='text/javascript' src="/public/scripts/popper.min.js"></script>
     <script type='text/javascript' src='/public/scripts/form.js'></script>
-    <title><?= $title ?></title>
+    <title> Ошибка</title>
 </head>
 
 <body>
