@@ -70,5 +70,7 @@
     </nav>
     <?= $content ?>
 </body>
-
+<footer>
+    
+</footer>
 </html>

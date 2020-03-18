@@ -61,9 +61,13 @@ class HomeController extends Controller
       if (!$this->model->validation(['firstName', 'lastName', 'email', 'password'], $_POST)) {
         $this->view->validationMessage(['firstName', 'lastName', 'password', 'email'], $this->model->rules);
       }
-      if (!$this->model->checkEmail($_POST)) {
-        $this->view->validationMessage(['firstName', 'lastName', 'email', 'password', 'account'], $this->model->rules);
+      if (!$this->model->checkConfirmPassword($_POST)) {
+        $this->view->validationMessage(['firstName', 'lastName', 'password', 'email', 'confirm-password'], $this->model->rules);
       }
+      if (!$this->model->checkEmail($_POST)) {
+        $this->view->validationMessage(['firstName', 'lastName', 'email', 'confirm-password', 'password', 'account'], $this->model->rules);
+      }
+
       $this->model->createNewUser($_POST);
       $this->view->message('Register Success', 'Регистрация прошла успешно!', '/index');
     }

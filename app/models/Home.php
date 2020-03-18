@@ -13,11 +13,20 @@ class Home extends Model
         $this->rules =  require 'app/config/home.php';
     }
 
+    public function checkConfirmPassword($post)
+    {
+        if ($post['password'] != $post['confirm-password']) {
+            $this->rules['confirm-password']['error'] = true;
+            return false;
+        }
+        return true;
+    }
+
     public function createNewUser($post)
     {
         $role_id = $this->db->column('select id from roles where name = :name', ['name' => 'user']);
         $this->db->query('insert into users (first,last,email,password, role_id, gender, birth) 
-        values(:first, :last, :email, :password, :role,:gender, :birth)', [
+        values(:first, :last, :email, :password, :role, :gender, :birth)', [
             'first' => $post['firstName'],
             'role' => $role_id,
             'last' => $post['lastName'],
@@ -45,6 +54,7 @@ class Home extends Model
     public function checkCaptcha($post)
     {
         if (!isset($post["g-recaptcha-response"])) return false;
+
         $url = 'https://www.google.com/recaptcha/api/siteverify';
         $data =    http_build_query([
             'secret' => '6LfKKeIUAAAAAN_SoJVNZ46friEP5OOsNVf3cVkR',

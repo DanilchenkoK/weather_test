@@ -28,6 +28,11 @@
                 <small id="validate-password" class="d-none text-danger"><?= $rules['password']['message'] ?></small>
             </div>
             <div class="form-group">
+                <label for="confirm-password">Подтвердите пароль</label>
+                <input type="password" minlength="6" pattern="[a-zA-Z0-9]{6,50}" maxlength="50" require class="form-control" name="confirm-password" id="confirm-password" placeholder="Введите пароль">
+                <small id="validate-confirm-password" class="d-none text-danger"><?= $rules['confirm-password']['message'] ?></small>
+            </div>
+            <div class="form-group">
                 <label for="gender">Выберите пол</label>
                 <select class="form-control" name="gender" id="gender">
                     <option value="-1">не выбрано</option>
