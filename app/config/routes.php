@@ -21,6 +21,10 @@ return [
         'controller' => 'home',
         'action' => 'login'
     ],
+    'login' => [
+        'controller' => 'home',
+        'action' => 'login'
+    ],
     'logout/{url:\w+}' => [
         'controller' => 'home',
         'action' => 'logout'

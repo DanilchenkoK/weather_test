@@ -12,6 +12,7 @@
     <script type='text/javascript' src="/public/scripts/bootstrap.js"></script>
     <script type='text/javascript' src="/public/scripts/popper.min.js"></script>
     <script type='text/javascript' src='/public/scripts/form.js'></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <title><?= $title ?></title>
 </head>
 

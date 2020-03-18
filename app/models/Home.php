@@ -42,6 +42,41 @@ class Home extends Model
         return true;
     }
 
+    public function checkCaptcha($post)
+    {
+        if (!isset($post["g-recaptcha-response"])) return false;
+        $url = 'https://www.google.com/recaptcha/api/siteverify';
+        $data =    http_build_query([
+            'secret' => '6LfKKeIUAAAAAN_SoJVNZ46friEP5OOsNVf3cVkR',
+            'response' => $post["g-recaptcha-response"]
+        ]);
+        $options = [
+            'http' => [
+                'header' => "Content-Type: application/x-www-form-urlencoded\r\n" .
+                    "Content-Length: " . strlen($data),
+
+                'method' => 'POST',
+                'content' =>  $data
+            ]
+        ];
+        $context  = stream_context_create($options);
+        $verify = file_get_contents($url, false, $context);
+        $captcha_success = json_decode($verify);
+        $this->rules['reCaptcha']['error'] = !$captcha_success->success;
+        return $captcha_success->success;
+    }
+
+    public function saveMessage($post)
+    {
+
+        $this->db->query('insert into feedback (name, email, text)
+        values (:name, :email, :text)', [
+            'name' => $post['firstName'],
+            'email' => $post['email'],
+            'text' => $post['text']
+        ]);
+    }
+
     public function logoutAccount()
     {
         unset($_SESSION['authorized']);

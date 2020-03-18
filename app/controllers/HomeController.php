@@ -16,8 +16,20 @@ class HomeController extends Controller
 
   public function contactAction()
   {
-    $this->view->render('Обратная связь');
+    if (!empty($_POST)) {
+      if (!$this->model->validation(['email', 'firstName', 'text'], $_POST)) {
+        $this->view->validationMessage(['email', 'firstName', 'text'], $this->model->rules);
+      }
+      if (!$this->model->checkCaptcha($_POST)) {
+        $this->view->validationMessage(['reCaptcha'], $this->model->rules);
+      }
+      $this->model->saveMessage($_POST);
+      $this->view->message('Status OK', 'Ваше сообщение отправлено!', '/index');
+    }
+    $this->view->render('Обратная связь', ['rules' => $this->model->rules]);
   }
+
+
   public function loginAction()
   {
     isset($_SESSION['authorized']) ? $this->view->redirect('index') : null;
