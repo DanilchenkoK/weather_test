@@ -6,13 +6,28 @@ use PDO;
 
 class Db
 {
+    protected static $instance = null;
     protected $db;
-    function __construct()
+
+    public static function getInstance()
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
+    private function __construct()
     {
         $config = include_once 'app/config/db.php';
         $this->db = new PDO('mysql:host=' . $config['host'] . ';dbname=' . $config['name'] . ';charset=utf8;', $config['user'], $config['password']);
     }
-
+    private function __clone()
+    {
+    }
+    private function __wakeup()
+    {
+    }
     public function query($sql, $params = [])
     {
         $tmp = $this->db->prepare($sql);
