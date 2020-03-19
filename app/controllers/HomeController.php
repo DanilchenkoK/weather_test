@@ -28,7 +28,7 @@ class HomeController extends Controller
         $this->view->validationMessage(['email', 'firstName', 'text'], $this->model->rules);
       }
       if (!$this->model->checkCaptcha($_POST)) {
-        $this->view->validationMessage(['reCaptcha'], $this->model->rules);
+        $this->view->validationMessage(['email', 'firstName', 'text', 'reCaptcha'], $this->model->rules);
       }
       $this->model->saveMessage($_POST);
       $this->view->message('Status OK', 'Ваше сообщение отправлено!', '/index');
@@ -48,9 +48,10 @@ class HomeController extends Controller
       }
       $this->view->message('Status OK', 'Вход выполнен успешно!', '/' . $_POST['rUrl']);
     }
+
     $this->view->render('Вход', [
       'rules' => $this->model->rules,
-      'rUrl' => $this->route['url']
+      'rUrl' => $this->route['url'] ?? 'index'
     ]);
   }
 
@@ -78,12 +79,13 @@ class HomeController extends Controller
   public function logoutAction()
   {
     $this->model->logoutAccount();
-    $this->view->redirect($this->route['url']);
+    $this->view->redirect($this->route['url'] ?? 'index');
   }
 
   public function weatherAction()
   {
     $weather = new Weather();
+
     $this->view->render('Погода в Запорожье', [
       'weather' => $weather->getWeather()
     ]);
