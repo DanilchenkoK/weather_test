@@ -6,8 +6,8 @@ use PDO;
 
 class Db
 {
-    protected static $instance = null;
-    protected $db;
+    private static $instance = null;
+    private $db;
 
     public static function getInstance()
     {
@@ -22,12 +22,14 @@ class Db
         $config = include_once 'app/config/db.php';
         $this->db = new PDO('mysql:host=' . $config['host'] . ';dbname=' . $config['name'] . ';charset=utf8;', $config['user'], $config['password']);
     }
+
     private function __clone()
     {
     }
     private function __wakeup()
     {
     }
+
     public function query($sql, $params = [])
     {
         $tmp = $this->db->prepare($sql);
